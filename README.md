@@ -5,33 +5,6 @@ Created as a submission for the IEEE CS PESU Web Development Recruitments Challe
 
 - 🌐 **Live Website**: [https://aadhya-confluence-2026.vercel.app](https://aadhya-confluence-2026.vercel.app)
 - 📊 **Vercel Project**: [aadhya-confluence-2026](https://vercel.com/aadhya8/aadhya-confluence-2026)
-- 🏢 **Host Chapter**: IEEE Computer Society PES University
-
----
-
-## ⚡ Event Snapshot
-
-| Detail | Information |
-| :--- | :--- |
-| **Project Name** | `aadhya-confluence-2026` |
-| **Production URL** | **[https://aadhya-confluence-2026.vercel.app](https://aadhya-confluence-2026.vercel.app)** |
-| **Event** | Confluence 2025 (24-Hour National Hackathon) |
-| **Organized By** | IEEE Computer Society PES University |
-| **In Association With** | EEE Department (PESU RR Campus) & C3I (PESU ECC) |
-| **Partners & Sponsors** | CIE, Accure (Title Sponsor), IEEE Bangalore Section, Citrix, G-KnowMe |
-| **Dates** | February 14 - 15, 2025 |
-| **Venue** | 13th Floor, BE Block, PES University RR Campus, Bengaluru |
-| **Total Prizes** | ₹70,000 INR |
-| **Finalist Squads** | Top 40 shortlisted collegiate engineering teams |
-
----
-
-## 🎮 Visual Aesthetic & Design
-
-- **Dark Retro Arcade World**: Deep space midnight navy backgrounds with vibrant neon cyan, arcade gold, electric blue, and pixel green accents.
-- **3D Title Screen**: Extruded `CONFLUENCE` title with retro corner crosses, hackathon ribbon, scanlines, and 4 vintage stat panels.
-- **Top Taskbar**: Includes the official **IEEE Computer Society** logo, uncluttered section navigation, and a direct link to the finalist presentation template.
-- **Authentic Branding**: Real high-resolution logos for Accure, IEEE Bangalore Section, C3I, CIE, Citrix, and G-KnowMe.
 
 ---
 
@@ -76,10 +49,3 @@ npx vercel deploy --prod
 
 ---
 
-## 👥 Credits
-
-- **Host**: IEEE Computer Society Student Branch Chapter, PES University
-- **Academic Collaborators**: EEE Department (PESU RR Campus) & C3I (PESU ECC)
-- **Incubation**: Centre for Innovation & Entrepreneurship (CIE), PES University
-- **Title Sponsor**: Accure
-- **Production Site**: [https://aadhya-confluence-2026.vercel.app](https://aadhya-confluence-2026.vercel.app)
