@@ -2,6 +2,8 @@
 
 A vintage-arcade redesign of the official **Confluence 2025** 24-hour national hackathon portal by **IEEE Computer Society PES University**.
 
+Created as a submission for the IEEE CS PESU Web Development Recruitments Challenge, this project pairs its retro arcade aesthetic with Windows XP-inspired elements and was developed with Antigravity assistance.
+
 - 🌐 **Live Website**: [https://aadhya-confluence-2026.vercel.app](https://aadhya-confluence-2026.vercel.app)
 - 📊 **Vercel Project**: [aadhya-confluence-2026](https://vercel.com/aadhya8/aadhya-confluence-2026)
 - 🏢 **Host Chapter**: IEEE Computer Society PES University
