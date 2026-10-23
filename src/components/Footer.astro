@@ -1,0 +1,360 @@
+﻿---
+// Footer.astro — Vintage Video Game Footer
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "8 AI Themes", href: "#themes" },
+  { label: "24h Roadmap", href: "#timeline" },
+  { label: "Top 40 Squads", href: "#teams" },
+  { label: "Sponsors & Ecosystem", href: "#sponsors" },
+  { label: "FAQ Archive", href: "#faqs" },
+  { label: "Contact & Venue", href: "#contact" }
+];
+---
+
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-arcade-panel">
+      <!-- Vintage Arcade Status Bar -->
+      <div class="arcade-status-strip" aria-hidden="true">
+        <div class="status-cell">
+          <span class="cell-label">SYSTEM:</span>
+          <span class="cell-val">CONFLUENCE_CORE // ONLINE</span>
+        </div>
+        <div class="status-cell">
+          <span class="cell-label">EDITION:</span>
+          <span class="cell-val">2025 NATIONAL</span>
+        </div>
+        <div class="status-cell">
+          <span class="cell-label">HOST:</span>
+          <span class="cell-val">IEEE CS PESU</span>
+        </div>
+        <div class="status-cell">
+          <span class="cell-label">STATUS:</span>
+          <span class="cell-val cell-val--gold">ARCHIVE COMPLETE</span>
+        </div>
+      </div>
+
+      <!-- Main Footer Grid -->
+      <div class="footer-grid">
+        <!-- Brand / Identity -->
+        <div class="footer-col brand-col">
+          <div class="footer-brand">
+            <img
+              src="/logos/ieee-cs-logo.png"
+              alt="IEEE Computer Society"
+              class="footer-ieee-logo"
+              loading="lazy"
+            />
+            <div class="brand-titles">
+              <span class="footer-logo-text">CONFLUENCE</span>
+              <span class="footer-year">2025</span>
+            </div>
+          </div>
+          <p class="footer-summary">
+            National Level 24-Hour Hackathon organized by <strong>IEEE Computer Society PES University</strong>, in association with <strong>EEE Department PESU RR Campus</strong> and <strong>C3I at PESU ECC</strong>.
+          </p>
+          <div class="edition-meta">
+            <span class="meta-item">📅 FEBRUARY 14–15, 2025</span>
+            <span class="meta-item">📍 PES UNIVERSITY RR CAMPUS, BENGALURU</span>
+            <span class="meta-item">🏆 ₹70,000 CASH PRIZE POOL</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col links-col">
+          <h4 class="col-title">NAVIGATION INDEX</h4>
+          <ul class="footer-nav-list">
+            {navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="footer-nav-link">
+                  <span class="link-bullet">▸</span>
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Official Chapters & Ecosystem -->
+        <div class="footer-col chapters-col">
+          <h4 class="col-title">ORGANIZATIONAL ECOSYSTEM</h4>
+          <ul class="eco-list">
+            <li>
+              <strong>IEEE CS PESU</strong>
+              <span>Host Student Chapter</span>
+            </li>
+            <li>
+              <strong>IEEE Bangalore Section</strong>
+              <span>Professional Section Partner</span>
+            </li>
+            <li>
+              <strong>C3I (PESU ECC)</strong>
+              <span>Center for Cyber Security & Innovation</span>
+            </li>
+            <li>
+              <strong>CIE (PESU)</strong>
+              <span>Centre for Innovation & Entrepreneurship</span>
+            </li>
+            <li>
+              <strong>EEE Department</strong>
+              <span>PES University RR Campus</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">
+          © 2025 IEEE Computer Society PES University. All rights reserved.
+        </p>
+
+        <a href="#home" class="back-to-top-btn" aria-label="Back to top of page">
+          <span>▲ RETURN TO TOP</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    padding: 3.5rem 0 2rem;
+    background: #020713;
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+  }
+
+  .footer-arcade-panel {
+    background: rgba(8, 18, 44, 0.85);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 10px;
+    padding: 1.5rem 1.8rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Status Strip */
+  .arcade-status-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    border-bottom: 1px dashed rgba(0, 212, 255, 0.25);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .status-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+  }
+
+  .cell-label {
+    color: var(--text-soft);
+  }
+
+  .cell-val {
+    color: var(--neon-cyan);
+    font-weight: 700;
+  }
+
+  .cell-val--gold {
+    color: var(--arcade-yellow);
+  }
+
+  /* Footer Grid */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  }
+
+  @media (min-width: 680px) {
+    .footer-grid {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+
+  @media (min-width: 980px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1.3fr;
+    }
+  }
+
+  /* Brand Col */
+  .brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-ieee-logo {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .brand-titles {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .footer-logo-text {
+    font-family: var(--font-retro);
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 14px rgba(0, 212, 255, 0.5);
+    font-weight: 700;
+  }
+
+  .footer-year {
+    font-family: var(--font-retro);
+    font-size: 1.2rem;
+    color: var(--arcade-yellow);
+  }
+
+  .footer-summary {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .edition-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .meta-item {
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* Links Col */
+  .col-title {
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--arcade-yellow);
+    margin-bottom: 0.85rem;
+  }
+
+  .footer-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    color: #cadbee;
+    text-decoration: none;
+    transition: color 0.18s, transform 0.18s;
+  }
+
+  .footer-nav-link:hover {
+    color: var(--neon-cyan);
+    transform: translateX(4px);
+  }
+
+  .link-bullet {
+    color: var(--neon-cyan);
+    font-size: 0.8rem;
+  }
+
+  /* Eco List */
+  .eco-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .eco-list li {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
+  .eco-list strong {
+    color: #ffffff;
+    font-size: 0.9rem;
+  }
+
+  .eco-list span {
+    color: var(--text-mid);
+    font-size: 0.78rem;
+  }
+
+  /* Bottom Bar */
+  .footer-bottom-bar {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 680px) {
+    .footer-bottom-bar {
+      flex-direction: row;
+    }
+  }
+
+  .copyright-text {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin: 0;
+  }
+
+  .back-to-top-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-retro);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--neon-cyan);
+    text-decoration: none;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .back-to-top-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: translateY(-2px);
+  }
+</style>

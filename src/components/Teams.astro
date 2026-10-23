@@ -1,0 +1,425 @@
+﻿---
+// Teams.astro — Top 40 Finalist Teams Leaderboard (Dark Pac-Man Arcade Theme)
+const rawTeams = [
+  [1, "Astrix"], [2, "bodhamrta"], [3, "Team Royale"], [4, "The Algorithm Avengers"],
+  [5, "HackTrekkers"], [6, "NNNLP"], [7, "Code Blazers"], [8, "Flow Learn"],
+  [9, "Lakshya"], [10, "Crisis Crushers"], [11, "Bug Smashers"], [12, "Quantum_Agents"],
+  [13, "DeadaSec"], [14, "EchoLip"], [15, "Coding Pests"], [16, "<coffee coders/>"],
+  [17, "Neuro Nova"], [18, "Google Slidez"], [19, "Mythos"], [20, "Fixed-it Felix"],
+  [21, "ECHELON X"], [22, "BitCrew"], [23, "The Lorekeepers"], [24, "The Oracle of Asclepius"],
+  [25, "SEA-KERS"], [26, "Terminal Tykes"], [27, "HAT SQUAD"], [28, "Syntax squad"],
+  [29, "The Wicked Crew"], [30, "TARDIS"], [31, "The Connected Nodes"], [32, "Hacktastic"],
+  [33, "DuoYodhas"], [34, "Data Ninjas"], [35, "Guru.Ai"], [36, "NeuroCoders"],
+  [37, "Jackpot"], [38, "Code Diggers"], [39, "ClutchAI"], [40, "404: Team not found"]
+] as const;
+
+const teams = rawTeams.map(([rank, name]) => ({
+  rank,
+  name,
+  isPodium: rank <= 3,
+  rankClass: rank === 1 ? "rank-gold" : rank === 2 ? "rank-silver" : rank === 3 ? "rank-bronze" : "rank-standard",
+  formattedRank: rank < 10 ? `0${rank}` : `${rank}`,
+  pts: 1000 - rank * 15
+}));
+---
+
+<section class="section-pad teams-section" id="teams">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="arcade-chip">
+        <span class="chip-dot"></span>
+        <span>HALL_OF_FAME.EXE // TOP 40 LEADERBOARD</span>
+      </div>
+      <h2 class="section-title neon-title">Top 40 Finalist Squads</h2>
+      <p class="section-desc">
+        Selected from hundreds of nationwide applications. These 40 elite engineering teams competed in the 24-hour sprint at PES University RR Campus.
+      </p>
+    </div>
+
+    <!-- Search / Filter Bar -->
+    <div class="arcade-search-panel">
+      <div class="search-prompt-row">
+        <span class="cmd-prompt" aria-hidden="true">arcade:\confluence&gt; query_squad.sh</span>
+        <span class="count-display"><span id="visible-count">40</span> / 40 SQUADS</span>
+      </div>
+
+      <div class="search-input-wrapper">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="text"
+          id="team-search"
+          class="arcade-search-input"
+          placeholder="Filter by squad name or rank number..."
+          autocomplete="off"
+        />
+        <button type="button" id="search-clear" class="search-clear-btn" aria-label="Clear filter">✕</button>
+      </div>
+    </div>
+
+    <!-- Leaderboard Grid -->
+    <div class="leaderboard-grid" id="teams-grid">
+      {teams.map((item) => (
+        <div class={`team-card ${item.rankClass}`} data-name={item.name.toLowerCase()} data-rank={item.rank}>
+          <div class="card-left">
+            <span class="rank-badge">#{item.formattedRank}</span>
+            <span class="team-name">{item.name}</span>
+          </div>
+          <div class="card-right">
+            {item.isPodium ? (
+              <span class="podium-star" aria-label={`Rank ${item.rank} Star`}>★</span>
+            ) : (
+              <span class="pts-text">{item.pts} PTS</span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div id="no-results-msg" class="no-results-panel" style="display: none;">
+      <span class="no-results-icon" aria-hidden="true">👾</span>
+      <p class="no-results-title">NO SQUAD MATCHED QUERY</p>
+      <p class="no-results-sub">Check spelling or try a different rank number</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const searchInput = document.getElementById("team-search") as HTMLInputElement | null;
+  const clearBtn = document.getElementById("search-clear");
+  const visibleCount = document.getElementById("visible-count");
+  const noResults = document.getElementById("no-results-msg");
+  const teamCards = document.querySelectorAll<HTMLElement>(".team-card");
+
+  function filterTeams() {
+    if (!searchInput) return;
+    const query = searchInput.value.trim().toLowerCase();
+    let count = 0;
+
+    teamCards.forEach((card) => {
+      const name = card.dataset.name || "";
+      const rank = card.dataset.rank || "";
+      const matches = !query || name.includes(query) || rank === query;
+
+      if (matches) {
+        card.style.display = "";
+        count++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    if (visibleCount) visibleCount.textContent = String(count);
+    if (noResults) noResults.style.display = count === 0 ? "flex" : "none";
+    if (clearBtn) clearBtn.style.opacity = query.length > 0 ? "1" : "0.3";
+  }
+
+  searchInput?.addEventListener("input", filterTeams);
+  clearBtn?.addEventListener("click", () => {
+    if (searchInput) {
+      searchInput.value = "";
+      filterTeams();
+      searchInput.focus();
+    }
+  });
+</script>
+
+<style>
+  .teams-section {
+    position: relative;
+    background: radial-gradient(circle at 50% 80%, rgba(14, 30, 70, 0.6) 0%, rgba(3, 8, 22, 0.98) 100%);
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .arcade-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--border-neon);
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--arcade-yellow);
+    box-shadow: 0 0 8px var(--arcade-yellow);
+  }
+
+  .neon-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Search Panel */
+  .arcade-search-panel {
+    max-width: 780px;
+    margin: 0 auto 2.5rem;
+    background: rgba(10, 22, 50, 0.85);
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .search-prompt-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+  }
+
+  .cmd-prompt {
+    color: var(--neon-cyan);
+    letter-spacing: 0.05em;
+  }
+
+  .count-display {
+    color: var(--arcade-yellow);
+    letter-spacing: 0.08em;
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 0.95rem;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .arcade-search-input {
+    width: 100%;
+    background: rgba(3, 8, 22, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 6px;
+    padding: 0.65rem 2.5rem 0.65rem 2.4rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #e0f4ff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .arcade-search-input:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.35);
+  }
+
+  .arcade-search-input::placeholder {
+    color: #557095;
+  }
+
+  .search-clear-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--neon-cyan);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+  }
+
+  .search-clear-btn:hover {
+    opacity: 1;
+  }
+
+  /* Grid */
+  .leaderboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 600px) {
+    .leaderboard-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .leaderboard-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .team-card {
+    background: rgba(10, 22, 50, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    padding: 0.75rem 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+  }
+
+  .team-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.25);
+  }
+
+  .card-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    overflow: hidden;
+  }
+
+  .rank-badge {
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--neon-cyan);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    flex-shrink: 0;
+  }
+
+  .team-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #e0f4ff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-right {
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+
+  .pts-text {
+    font-family: var(--font-retro);
+    font-size: 0.9rem;
+    color: #60a5fa;
+  }
+
+  /* Podium distinctions */
+  .rank-gold {
+    border-color: rgba(251, 191, 36, 0.6);
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.12) 0%, rgba(10, 22, 50, 0.85) 100%);
+  }
+
+  .rank-gold .rank-badge {
+    background: #fbbf24;
+    color: #030818;
+    border-color: #fbbf24;
+    font-weight: 800;
+  }
+
+  .rank-gold .podium-star {
+    color: #fbbf24;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px #fbbf24;
+  }
+
+  .rank-silver {
+    border-color: rgba(0, 212, 255, 0.6);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(10, 22, 50, 0.85) 100%);
+  }
+
+  .rank-silver .rank-badge {
+    background: #00d4ff;
+    color: #030818;
+    border-color: #00d4ff;
+    font-weight: 800;
+  }
+
+  .rank-silver .podium-star {
+    color: #00d4ff;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px #00d4ff;
+  }
+
+  .rank-bronze {
+    border-color: rgba(249, 115, 22, 0.6);
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(10, 22, 50, 0.85) 100%);
+  }
+
+  .rank-bronze .rank-badge {
+    background: #f97316;
+    color: #030818;
+    border-color: #f97316;
+    font-weight: 800;
+  }
+
+  .rank-bronze .podium-star {
+    color: #f97316;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px #f97316;
+  }
+
+  /* No results panel */
+  .no-results-panel {
+    margin-top: 2rem;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(10, 22, 50, 0.5);
+    border: 1px dashed rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+  }
+
+  .no-results-icon {
+    font-size: 2.2rem;
+  }
+
+  .no-results-title {
+    font-family: var(--font-retro);
+    font-size: 1.2rem;
+    color: var(--arcade-yellow);
+    letter-spacing: 0.08em;
+  }
+
+  .no-results-sub {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+  }
+</style>

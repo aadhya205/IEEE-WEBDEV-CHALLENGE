@@ -1,0 +1,433 @@
+﻿---
+// Themes.astro — 8 Official AI Problem Themes (Vintage Video Game Style)
+interface Theme {
+  id: string;
+  num: string;
+  badge: string;
+  title: string;
+  accentColor: string;
+  accentGlow: string;
+  desc: string;
+  tracks: string[];
+}
+
+const themes: Theme[] = [
+  {
+    id: "sustainability",
+    num: "01",
+    badge: "ECO_AI",
+    title: "AI for Environmental Sustainability",
+    accentColor: "#22c55e",
+    accentGlow: "rgba(34, 197, 94, 0.4)",
+    desc: "Tackling pressing ecological crises: combating carbon emissions, intelligent renewable energy distribution, ocean debris tracking, and wildlife conservation.",
+    tracks: [
+      "Micro-grid load balancing & solar forecast",
+      "Satellite computer vision for illegal logging",
+      "Precision agriculture pesticide reduction",
+      "Smart municipal recycling classification"
+    ]
+  },
+  {
+    id: "mobility",
+    num: "02",
+    badge: "TRANSIT_AI",
+    title: "The Future of Mobility: AI in Transportation",
+    accentColor: "#00d4ff",
+    accentGlow: "rgba(0, 212, 255, 0.4)",
+    desc: "Making transit safer, faster, and decarbonized. Autonomous decision engines, dynamic traffic decongestion, predictive EV logistics, and hyper-local transit routing.",
+    tracks: [
+      "Intelligent dynamic traffic signaling",
+      "Fleet routing optimization for EV delivery",
+      "Driver vigilance & collision avoidance",
+      "Public transit demand prediction"
+    ]
+  },
+  {
+    id: "well-being",
+    num: "03",
+    badge: "HEALTH_AI",
+    title: "AI for Human Well-Being",
+    accentColor: "#f472b6",
+    accentGlow: "rgba(244, 114, 182, 0.4)",
+    desc: "AI-powered clinical assistance: early pathology detection, accessible assistive technologies for disabilities, mental wellness bots, and continuous remote patient monitoring.",
+    tracks: [
+      "Early pathology detection from radiology",
+      "Assistive AI for visually/hearing impaired",
+      "Mental wellness empathetic companion bots",
+      "Remote patient vitals telemetry"
+    ]
+  },
+  {
+    id: "future-cities",
+    num: "04",
+    badge: "URBAN_AI",
+    title: "AI-Powered Future Cities",
+    accentColor: "#a855f7",
+    accentGlow: "rgba(168, 85, 247, 0.4)",
+    desc: "Smarter civic infrastructure: responsive urban heating mitigation, predictive disaster response routing, building energy optimization, and municipal grid integrity.",
+    tracks: [
+      "AI in urban heat island mitigation",
+      "Smart commercial building HVAC control",
+      "Emergency service dispatch optimization",
+      "Municipal clean water leak detection"
+    ]
+  },
+  {
+    id: "education",
+    num: "05",
+    badge: "EDTECH_AI",
+    title: "Revolutionizing Education with AI",
+    accentColor: "#fbbf24",
+    accentGlow: "rgba(251, 191, 36, 0.4)",
+    desc: "Adaptive learning platforms tuning pace to each student, neurodiverse learning assistants, automated teacher grading tools, and interactive STEM virtual simulations.",
+    tracks: [
+      "Adaptive curriculum for neurodiverse students",
+      "Automated coding assessment engines",
+      "Multilingual educational translation",
+      "Interactive virtual science lab simulations"
+    ]
+  },
+  {
+    id: "entertainment",
+    num: "06",
+    badge: "MEDIA_AI",
+    title: "AI for Entertainment, Media & Gaming",
+    accentColor: "#38bdf8",
+    accentGlow: "rgba(56, 189, 248, 0.4)",
+    desc: "Procedural generative worlds, intelligent NPC behaviour with contextual memory, real-time audio remastering, and personalized interactive streaming experiences.",
+    tracks: [
+      "Dynamic procedural story generation",
+      "AI-driven NPC dialogue memory systems",
+      "Real-time audio remastering & spatialization",
+      "Personalized interactive video feeds"
+    ]
+  },
+  {
+    id: "crisis",
+    num: "07",
+    badge: "RESCUE_AI",
+    title: "AI in Crisis Management & Disaster Relief",
+    accentColor: "#f97316",
+    accentGlow: "rgba(249, 115, 22, 0.4)",
+    desc: "Real-time natural catastrophe tracking, swarm robotics coordination for search-and-rescue, crisis aid supply chain routing, and social SOS broadcast triage.",
+    tracks: [
+      "Flood & wildfire progression forecasting",
+      "Autonomous search-and-rescue drone fleets",
+      "Humanitarian relief supply chain logistics",
+      "Real-time SOS social feed triage"
+    ]
+  },
+  {
+    id: "genai",
+    num: "08",
+    badge: "FRONTIER_AI",
+    title: "The Boundless Potential of Generative AI",
+    accentColor: "#ec4899",
+    accentGlow: "rgba(236, 72, 153, 0.4)",
+    desc: "Multimodal frontier AI copilots, generative structural CAD engineering, privacy-first synthetic data pipelines, and biomolecular drug discovery models.",
+    tracks: [
+      "Generative CAD for structural engineering",
+      "Multimodal domain-specific copilots",
+      "Synthetic datasets for privacy-first AI",
+      "Molecular structure synthesis for medicine"
+    ]
+  }
+];
+---
+
+<section class="section-pad themes-section" id="themes">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="arcade-chip">
+        <span class="chip-dot"></span>
+        <span>STAGE_SELECT // LEVEL 02: PROBLEM DOMAINS</span>
+      </div>
+      <h2 class="section-title neon-title">8 Official AI Problem Themes</h2>
+      <p class="section-desc">
+        Engineered for real-world impact across 8 curated problem spheres. Teams designed, fine-tuned, and deployed production-ready AI solutions within 24 intense hours.
+      </p>
+    </div>
+
+    <div class="themes-grid">
+      {themes.map(theme => (
+        <article
+          class="theme-arcade-card"
+          id={`theme-${theme.id}`}
+          style={`--card-accent: ${theme.accentColor}; --card-glow: ${theme.accentGlow};`}
+        >
+          <!-- Arcade Titlebar -->
+          <div class="theme-titlebar">
+            <div class="titlebar-left">
+              <span class="pixel-cube" aria-hidden="true">■</span>
+              <span class="titlebar-name">TRACK_{theme.num}.AI</span>
+            </div>
+            <div class="titlebar-right">
+              <span class="theme-badge-text">{theme.badge}</span>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="theme-body">
+            <div class="theme-meta">
+              <span class="level-indicator">STAGE {theme.num}</span>
+              <span class="score-points">+500 PTS</span>
+            </div>
+
+            <h3 class="theme-title">{theme.title}</h3>
+            <p class="theme-desc">{theme.desc}</p>
+
+            <!-- Collapsible Example Tracks -->
+            <details class="theme-details">
+              <summary class="details-toggle">
+                <span class="toggle-text">Explore Track Ideas</span>
+                <span class="toggle-arrow" aria-hidden="true">▸</span>
+              </summary>
+              <ul class="tracks-list">
+                {theme.tracks.map(t => (
+                  <li class="track-item">
+                    <span class="track-bullet" aria-hidden="true">▸</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .themes-section {
+    position: relative;
+    background: radial-gradient(circle at 50% 20%, rgba(14, 30, 70, 0.6) 0%, rgba(3, 8, 22, 0.95) 100%);
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .arcade-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--border-neon);
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--arcade-yellow);
+    box-shadow: 0 0 8px var(--arcade-yellow);
+  }
+
+  .neon-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Themes Grid */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .themes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1060px) {
+    .themes-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Theme Card */
+  .theme-arcade-card {
+    background: rgba(10, 22, 50, 0.82);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-top: 2px solid var(--card-accent);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .theme-arcade-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--card-accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--card-glow);
+  }
+
+  /* Titlebar */
+  .theme-titlebar {
+    background: rgba(4, 12, 30, 0.95);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.18);
+    padding: 0.5rem 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .titlebar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .pixel-cube {
+    color: var(--card-accent);
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+
+  .titlebar-name {
+    font-family: var(--font-retro);
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    color: #e0f4ff;
+  }
+
+  .theme-badge-text {
+    font-family: var(--font-retro);
+    font-size: 0.85rem;
+    color: var(--card-accent);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Card Body */
+  .theme-body {
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.65rem;
+  }
+
+  .theme-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+  }
+
+  .level-indicator {
+    color: var(--card-accent);
+    letter-spacing: 0.05em;
+  }
+
+  .score-points {
+    color: var(--arcade-yellow);
+    letter-spacing: 0.05em;
+  }
+
+  .theme-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .theme-desc {
+    font-size: 0.86rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  /* Collapsible Details */
+  .theme-details {
+    margin-top: auto;
+    border-top: 1px dashed rgba(0, 212, 255, 0.2);
+    padding-top: 0.65rem;
+  }
+
+  .details-toggle {
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    color: var(--neon-cyan);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    padding: 2px 0;
+  }
+
+  .details-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .toggle-arrow {
+    font-size: 0.95rem;
+    color: var(--arcade-yellow);
+    transition: transform 0.2s ease;
+  }
+
+  .theme-details[open] .toggle-arrow {
+    transform: rotate(90deg);
+  }
+
+  .tracks-list {
+    list-style: none;
+    padding: 0.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .track-item {
+    font-size: 0.78rem;
+    color: #cadbee;
+    line-height: 1.35;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .track-bullet {
+    color: var(--card-accent);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+</style>

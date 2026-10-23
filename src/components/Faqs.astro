@@ -1,0 +1,270 @@
+﻿---
+// Faqs.astro — Frequently Asked Questions (Dark Arcade Pac-Man Theme)
+interface FaqItem {
+  id: string;
+  q: string;
+  a: string;
+  category: string;
+}
+
+const faqs: FaqItem[] = [
+  {
+    id: "when-where",
+    q: "When and where was Confluence 2025 held?",
+    a: "Confluence 2025 ran continuously for 24 hours on February 14–15, 2025, at the 13th Floor, BE Block, PES University RR Campus (100 Feet Ring Road, BSK III Stage, Bengaluru, Karnataka 560085).",
+    category: "VENUE & DATES"
+  },
+  {
+    id: "registration-fee",
+    q: "What was the registration fee for competing squads?",
+    a: "Shortlisted finalist squads paid a nominal registration fee of ₹200 per member. Please note that registration is formally closed as the hackathon concluded on February 15, 2025.",
+    category: "REGISTRATION"
+  },
+  {
+    id: "team-size",
+    q: "What was the squad size requirement?",
+    a: "Each participating squad consisted of 3 to 4 members. Interdisciplinary squads combining software engineers, hardware tinkerers, and UX designers were highly encouraged.",
+    category: "SQUAD SPECS"
+  },
+  {
+    id: "who-eligible",
+    q: "Who was eligible to participate in Confluence?",
+    a: "The hackathon was open to all undergraduate engineering, computing, and technology students from any accredited collegiate institution across India (years 1st through 4th, all branches).",
+    category: "ELIGIBILITY"
+  },
+  {
+    id: "prerequisites",
+    q: "Were specific advanced coding skills or AI degrees required?",
+    a: "No strict prerequisites! While algorithmic proficiency and familiarity with ML libraries helped, practical ingenuity, robust problem formulation, and a deployable working prototype were the primary scoring criteria.",
+    category: "REQUIREMENTS"
+  },
+  {
+    id: "tech-stack",
+    q: "Which frameworks, cloud platforms, or languages could teams use?",
+    a: "Squads had complete freedom over their tech stack — Python, Rust, TypeScript, Go, PyTorch, TensorFlow, Hugging Face, microcontrollers, and modern web frameworks were all permitted, provided all work conformed to integrity guidelines.",
+    category: "TECH STACK"
+  },
+  {
+    id: "prize-pool",
+    q: "What was the total prize purse and how was it awarded?",
+    a: "Confluence 2025 featured a verified total cash prize pool of ₹70,000 INR, awarded to the top overall champions, runner-ups, and standout track innovations, alongside sponsor awards and direct interview tracks.",
+    category: "REWARDS"
+  },
+  {
+    id: "food-amenities",
+    q: "Were meals, rest areas, and connectivity provided on campus?",
+    a: "Yes! PES University and IEEE CS PESU provided dedicated workspace stations with high-speed internet, power strips, full buffet dinner, hot midnight snacks, coffee/tea bars, breakfast, lunch, and resting lounges.",
+    category: "FACILITIES"
+  }
+];
+---
+
+<section class="section-pad faqs-section" id="faqs">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="arcade-chip">
+        <span class="chip-dot"></span>
+        <span>KNOWLEDGE_BASE // FREQUENTLY ASKED QUESTIONS</span>
+      </div>
+      <h2 class="section-title neon-title">Frequently Asked Questions</h2>
+      <p class="section-desc">
+        Everything you need to know about the Confluence format, eligibility criteria, judging benchmarks, and campus facilities.
+      </p>
+    </div>
+
+    <div class="faqs-accordion-wrapper">
+      {faqs.map((faq, index) => (
+        <details class="faq-arcade-item" id={`faq-${faq.id}`}>
+          <summary class="faq-summary">
+            <div class="faq-summary-left">
+              <span class="faq-num">Q{index < 9 ? `0${index + 1}` : index + 1}</span>
+              <span class="faq-question">{faq.q}</span>
+            </div>
+            <div class="faq-summary-right">
+              <span class="faq-cat-tag">{faq.category}</span>
+              <span class="faq-arrow" aria-hidden="true">▾</span>
+            </div>
+          </summary>
+          <div class="faq-answer-body">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faqs-section {
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, rgba(14, 28, 65, 0.6) 0%, rgba(2, 8, 22, 0.98) 100%);
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .arcade-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--border-neon);
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--arcade-yellow);
+    box-shadow: 0 0 8px var(--arcade-yellow);
+  }
+
+  .neon-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .faqs-accordion-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .faq-arcade-item {
+    background: rgba(10, 22, 50, 0.84);
+    border: 1px solid rgba(0, 212, 255, 0.22);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .faq-arcade-item[open] {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 6px 24px rgba(0, 212, 255, 0.25);
+  }
+
+  .faq-summary {
+    padding: 1.1rem 1.35rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    user-select: none;
+    background: rgba(5, 14, 34, 0.6);
+    transition: background 0.2s;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-summary:hover {
+    background: rgba(0, 212, 255, 0.08);
+  }
+
+  .faq-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex: 1;
+  }
+
+  .faq-num {
+    font-family: var(--font-retro);
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    color: var(--arcade-yellow);
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    padding: 1px 7px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .faq-question {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+  }
+
+  .faq-summary-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .faq-cat-tag {
+    display: none;
+    font-family: var(--font-retro);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  @media (min-width: 640px) {
+    .faq-cat-tag {
+      display: inline-block;
+    }
+  }
+
+  .faq-arrow {
+    color: var(--neon-cyan);
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-arcade-item[open] .faq-arrow {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer-body {
+    padding: 1.25rem 1.4rem;
+    border-top: 1px dashed rgba(0, 212, 255, 0.18);
+    background: rgba(8, 18, 42, 0.6);
+  }
+
+  .faq-answer-body p {
+    font-size: 0.95rem;
+    color: var(--text-bright);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

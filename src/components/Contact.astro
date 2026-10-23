@@ -1,0 +1,408 @@
+﻿---
+// Contact.astro — Verified Event Contacts & Venue (Dark Arcade Pac-Man Theme)
+interface Coordinator {
+  name: string;
+  role: string;
+  phone: string;
+  callUrl: string;
+  avatarChar: string;
+  avatarColor: string;
+}
+
+const coordinators: Coordinator[] = [
+  {
+    name: "Tejas Kumar",
+    role: "Event Lead — IEEE CS PESU",
+    phone: "+91 73490 89681",
+    callUrl: "tel:+917349089681",
+    avatarChar: "T",
+    avatarColor: "#00d4ff"
+  },
+  {
+    name: "Neha S",
+    role: "Operations Lead — IEEE CS PESU",
+    phone: "+91 99015 67755",
+    callUrl: "tel:+919901567755",
+    avatarChar: "N",
+    avatarColor: "#f472b6"
+  }
+];
+---
+
+<section class="section-pad contact-section" id="contact">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="arcade-chip">
+        <span class="chip-dot"></span>
+        <span>COMM_LINK // DIRECT CONTACT & VENUE</span>
+      </div>
+      <h2 class="section-title neon-title">Official Inquiries & Support</h2>
+      <p class="section-desc">
+        Connect directly with the IEEE CS PESU organizing committee for inquiries, partnership archives, and chapter technical events.
+      </p>
+    </div>
+
+    <div class="contact-layout-grid">
+      <!-- Coordinators Column -->
+      <div class="coordinators-col">
+        <h3 class="col-heading">EVENT COORDINATION LEADS</h3>
+        <div class="coordinators-stack">
+          {coordinators.map((coord) => (
+            <div class="coord-arcade-card">
+              <div class="coord-avatar" style={`--avatar-accent: ${coord.avatarColor};`}>
+                <span class="avatar-letter">{coord.avatarChar}</span>
+              </div>
+              <div class="coord-info">
+                <span class="coord-callsign">ORGANIZER_CALLSIGN</span>
+                <h4 class="coord-name">{coord.name}</h4>
+                <p class="coord-role">{coord.role}</p>
+                <a href={coord.callUrl} class="coord-phone-btn">
+                  <span class="phone-icon" aria-hidden="true">📞</span>
+                  <span>{coord.phone}</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Venue & Headquarters Column -->
+      <div class="venue-col">
+        <h3 class="col-heading">EVENT HEADQUARTERS</h3>
+        <div class="venue-arcade-card">
+          <div class="venue-titlebar">
+            <span class="venue-badge">HOST CAMPUS</span>
+            <span class="venue-city">BENGALURU, INDIA</span>
+          </div>
+
+          <div class="venue-body">
+            <div class="venue-icon-wrapper" aria-hidden="true">
+              <span class="geo-icon">📍</span>
+            </div>
+            <div class="venue-details">
+              <h4 class="venue-name">PES University (RR Campus)</h4>
+              <p class="venue-sub">13th Floor, B.E. Block</p>
+              <p class="venue-address">
+                100 Feet Ring Road, Banashankari III Stage, Bengaluru, Karnataka 560085
+              </p>
+              <div class="venue-meta-tags">
+                <span class="meta-tag">24-HOUR VENUE</span>
+                <span class="meta-tag">FIBER WI-FI</span>
+                <span class="meta-tag">CATERED MEALS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="venue-actions">
+            <a
+              href="https://maps.google.com/?q=PES+University+Ring+Road+Campus+Bengaluru"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="map-direct-btn"
+            >
+              <span>View On Google Maps</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    position: relative;
+    background: radial-gradient(circle at 50% 20%, rgba(10, 22, 55, 0.7) 0%, rgba(2, 7, 20, 0.98) 100%);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .arcade-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--border-neon);
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--arcade-yellow);
+    box-shadow: 0 0 8px var(--arcade-yellow);
+  }
+
+  .neon-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Layout */
+  .contact-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 820px) {
+    .contact-layout-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .col-heading {
+    font-family: var(--font-retro);
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    color: var(--arcade-yellow);
+    margin-bottom: 1rem;
+  }
+
+  /* Coordinators Stack */
+  .coordinators-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .coord-arcade-card {
+    background: rgba(10, 22, 50, 0.84);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .coord-arcade-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.25);
+  }
+
+  .coord-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 2px solid var(--avatar-accent);
+    box-shadow: 0 0 14px var(--avatar-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .avatar-letter {
+    font-family: var(--font-retro);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .coord-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .coord-callsign {
+    font-family: var(--font-retro);
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
+    letter-spacing: 0.05em;
+  }
+
+  .coord-name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .coord-role {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin: 0 0 0.4rem;
+  }
+
+  .coord-phone-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    color: var(--arcade-yellow);
+    text-decoration: none;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
+    align-self: flex-start;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+
+  .coord-phone-btn:hover {
+    background: rgba(251, 191, 36, 0.2);
+    border-color: #fbbf24;
+    transform: scale(1.02);
+  }
+
+  .phone-icon {
+    font-size: 0.85rem;
+  }
+
+  /* Venue Card */
+  .venue-arcade-card {
+    background: rgba(10, 22, 50, 0.84);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .venue-titlebar {
+    background: rgba(5, 14, 34, 0.9);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    padding: 0.65rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .venue-badge {
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+    color: #030818;
+    background: var(--neon-cyan);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .venue-city {
+    font-family: var(--font-retro);
+    font-size: 0.9rem;
+    color: var(--text-soft);
+  }
+
+  .venue-body {
+    padding: 1.25rem;
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+  }
+
+  .venue-icon-wrapper {
+    font-size: 1.8rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 8px 12px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .venue-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .venue-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .venue-sub {
+    font-size: 0.9rem;
+    color: var(--arcade-yellow);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .venue-address {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+    margin: 0.2rem 0 0.6rem;
+  }
+
+  .venue-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .meta-tag {
+    font-family: var(--font-retro);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cadbee;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  .venue-actions {
+    padding: 0.9rem 1.25rem;
+    background: rgba(5, 14, 34, 0.6);
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+  }
+
+  .map-direct-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-retro);
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    color: var(--neon-cyan);
+    text-decoration: none;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .map-direct-btn:hover {
+    color: #fff;
+    transform: translateX(3px);
+  }
+</style>

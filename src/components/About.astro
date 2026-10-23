@@ -1,0 +1,190 @@
+﻿---
+// About.astro — Dark Arcade Theme
+---
+
+<section class="section-pad section-alt" id="about">
+  <div class="container">
+    <div class="section-header-center">
+      <p class="section-eyebrow">[ C:\CONFLUENCE\ABOUT.DOC ]</p>
+      <h2 class="section-title">The 24-Hour National Innovation Hackathon</h2>
+      <p class="section-desc">Student coders across India unleashed creativity, innovated fearlessly, and tested their technical limits — all in 24 non-stop hours.</p>
+    </div>
+
+    <div class="about-grid">
+      <!-- Main panel -->
+      <div class="about-main xp-panel">
+        <div class="xp-titlebar">
+          <span class="xp-titlebar-title">ABOUT_CONFLUENCE_2025.TXT</span>
+          <div class="xp-titlebar-dots">
+            <span class="xp-titlebar-dot xp-titlebar-dot--min"></span>
+            <span class="xp-titlebar-dot xp-titlebar-dot--max"></span>
+            <span class="xp-titlebar-dot xp-titlebar-dot--close"></span>
+          </div>
+        </div>
+        <div class="about-body">
+          <p class="about-lead">
+            <strong class="hl-cyan">Confluence</strong> is the flagship national-level 24-hour hackathon organized by <strong class="hl-cyan">IEEE Computer Society PES University</strong>, in association with the <strong class="hl-yellow">EEE Department at PESU RR Campus</strong> and <strong class="hl-purple">C3I at PESU ECC</strong>.
+          </p>
+          <p>
+            Over 24 sleepless hours, student teams turned conceptual ideas into functional, deployed prototypes addressing real-world AI challenges across 8 curated domains. The hackathon provided a high-octane arena for passionate builders to collaborate, innovate, and ship products under pressure.
+          </p>
+
+          <div class="workflow-grid">
+            <div class="flow-item fi-blue">
+              <span class="flow-num">00</span>
+              <strong>Idea Submission</strong>
+              <p>Teams submitted problem statements &amp; AI solution proposals in the preliminary round.</p>
+            </div>
+            <div class="flow-item fi-green">
+              <span class="flow-num">01</span>
+              <strong>Top 40 Shortlisted</strong>
+              <p>Evaluators shortlisted the best 40 teams from nationwide applicants.</p>
+            </div>
+            <div class="flow-item fi-purple">
+              <span class="flow-num">02</span>
+              <strong>24-Hour Build Sprint</strong>
+              <p>Teams built working software/hardware models with ongoing mentor reviews.</p>
+            </div>
+            <div class="flow-item fi-pink">
+              <span class="flow-num">03</span>
+              <strong>Live Pitch &amp; Demo</strong>
+              <p>Finalists delivered 10-minute presentations to industry &amp; academic judges.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fact cards -->
+      <div class="about-facts">
+        <div class="fact-card xp-panel">
+          <span class="fact-emoji">📍</span>
+          <div>
+            <span class="fact-label">VENUE</span>
+            <h4 class="fact-val">13th Floor, BE Block</h4>
+            <p class="fact-sub">PES University RR Campus, 100 Feet Ring Road, BSK III Stage, Bengaluru 560085</p>
+          </div>
+        </div>
+        <div class="fact-card xp-panel">
+          <span class="fact-emoji">📅</span>
+          <div>
+            <span class="fact-label">DATES</span>
+            <h4 class="fact-val">February 14–15, 2025</h4>
+            <p class="fact-sub">24-hour sprint from kickoff to final valedictory ceremony</p>
+          </div>
+        </div>
+        <div class="fact-card xp-panel">
+          <span class="fact-emoji">🏆</span>
+          <div>
+            <span class="fact-label">PRIZE POOL</span>
+            <h4 class="fact-val">₹70,000</h4>
+            <p class="fact-sub">Awarded based on innovation, technical execution and viability</p>
+          </div>
+        </div>
+        <div class="fact-card xp-panel">
+          <span class="fact-emoji">👥</span>
+          <div>
+            <span class="fact-label">TEAM SIZE</span>
+            <h4 class="fact-val">3–4 Members</h4>
+            <p class="fact-sub">Open to all undergraduate engineering students, all years and branches</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .about-grid { grid-template-columns: 1.4fr 1fr; align-items: start; }
+  }
+
+  .about-main { overflow: hidden; }
+
+  .about-body {
+    padding: clamp(1.1rem,3vw,1.75rem);
+    display: flex; flex-direction: column; gap: 1rem;
+    font-size: 0.98rem; color: var(--text-mid); line-height: 1.68;
+  }
+
+  .about-lead { font-size: 1.07rem; color: var(--text-bright); }
+  .hl-cyan   { color: var(--neon-cyan); }
+  .hl-yellow { color: var(--arcade-yellow); }
+  .hl-purple { color: var(--neon-magenta); }
+
+  .workflow-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(0,212,255,0.25);
+  }
+
+  @media (max-width:500px) { .workflow-grid { grid-template-columns: 1fr; } }
+
+  .flow-item {
+    background: rgba(0,5,30,0.6);
+    border: 1px solid rgba(0,212,255,0.25);
+    border-radius: 8px; padding: 0.8rem;
+    display: flex; flex-direction: column; gap: 0.3rem;
+    transition: border-color 0.2s;
+  }
+
+  .flow-item:hover { border-color: rgba(0,212,255,0.6); }
+
+  .fi-blue   { border-left: 3px solid var(--neon-cyan); }
+  .fi-green  { border-left: 3px solid var(--pixel-green); }
+  .fi-purple { border-left: 3px solid var(--neon-violet); }
+  .fi-pink   { border-left: 3px solid var(--neon-pink); }
+
+  .flow-num {
+    font-family: var(--font-pixel); font-size: 0.62rem;
+    color: var(--neon-cyan); opacity: 0.7;
+  }
+
+  .flow-item strong { font-size: 0.9rem; color: var(--text-bright); }
+  .flow-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 0; }
+
+  .about-facts { display: flex; flex-direction: column; gap: 1rem; }
+
+  .fact-card {
+    display: flex; align-items: flex-start;
+    gap: 0.95rem; padding: 1rem 1.2rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .fact-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5), var(--glow-cyan);
+  }
+
+  .fact-emoji {
+    font-size: 1.7rem; line-height: 1; flex-shrink: 0;
+    padding: 6px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 8px;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    filter: drop-shadow(0 0 6px rgba(0,212,255,0.3));
+  }
+
+  .fact-label {
+    font-family: var(--font-retro); font-size: 0.88rem;
+    color: var(--neon-cyan); letter-spacing: 0.07em;
+    display: block; margin-bottom: 1px;
+    text-shadow: 0 0 8px rgba(0,212,255,0.4);
+  }
+
+  .fact-val {
+    font-family: var(--font-display); font-size: 1.1rem;
+    font-weight: 700; color: var(--text-bright);
+  }
+
+  .fact-sub {
+    font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin: 2px 0 0;
+  }
+</style>

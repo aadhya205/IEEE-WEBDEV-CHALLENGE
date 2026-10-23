@@ -1,0 +1,543 @@
+﻿---
+// Timeline.astro — 24-Hour Stage Roadmap (Vintage Video Game Style)
+interface EvtItem {
+  time: string;
+  title: string;
+  desc: string;
+  tag: string;
+  tagColor: string;
+}
+
+interface Stage {
+  stageNum: string;
+  code: string;
+  name: string;
+  date: string;
+  accent: string;
+  events: EvtItem[];
+}
+
+const stages: Stage[] = [
+  {
+    stageNum: "01",
+    code: "BOOT_UP",
+    name: "Hackathon Kickoff & Check-in",
+    date: "February 14, 2025",
+    accent: "#22c55e",
+    events: [
+      {
+        time: "04:00 PM",
+        title: "Team Check-In & Dev Setup",
+        desc: "All 40 shortlisted squads arrive at 13th Floor BE Block, initialize repos, wire dev kits, and receive official briefing.",
+        tag: "START",
+        tagColor: "#22c55e"
+      },
+      {
+        time: "06:00 PM",
+        title: "Power-Up Evening Snacks",
+        desc: "High-protein refreshments and hot tea/coffee served to fuel the initial sprint & ideation lock-in.",
+        tag: "FOOD",
+        tagColor: "#fbbf24"
+      }
+    ]
+  },
+  {
+    stageNum: "02",
+    code: "CHECKPOINT_ALPHA",
+    name: "Phase 1 Mentor Architecture Review",
+    date: "February 14, 2025",
+    accent: "#00d4ff",
+    events: [
+      {
+        time: "07:30 PM",
+        title: "Phase 1 Jury Review",
+        desc: "Domain experts & senior engineers audit system architecture, dataset pipeline hygiene, and track alignment.",
+        tag: "REVIEW",
+        tagColor: "#00d4ff"
+      },
+      {
+        time: "09:00 PM",
+        title: "Buffet Dinner",
+        desc: "Full course dinner served to sustain all participants, organizers, and mentors through the long night.",
+        tag: "FOOD",
+        tagColor: "#fbbf24"
+      }
+    ]
+  },
+  {
+    stageNum: "03",
+    code: "MIDNIGHT_RUN",
+    name: "Phase 2 Overnight Code Sprint",
+    date: "February 15, 2025",
+    accent: "#a855f7",
+    events: [
+      {
+        time: "02:00 AM",
+        title: "Midnight Munchies & Coffee Boost",
+        desc: "Late-night energy snacks and steaming beverages to keep the midnight coding momentum alive.",
+        tag: "FOOD",
+        tagColor: "#fbbf24"
+      },
+      {
+        time: "02:30 AM",
+        title: "Phase 2 Progress Review",
+        desc: "Midpoint checkpoint evaluating functional modules, integrated APIs, and initial model inference tests.",
+        tag: "REVIEW",
+        tagColor: "#a855f7"
+      },
+      {
+        time: "03:00 AM",
+        title: "Minigames & Open-Mic Recharge",
+        desc: "Fun retro gaming competitions and spontaneous acoustic jams to break mental fatigue.",
+        tag: "FUN",
+        tagColor: "#f472b6"
+      }
+    ]
+  },
+  {
+    stageNum: "04",
+    code: "SUNRISE_CRUNCH",
+    name: "Phase 3 Sprint & Top 15 Semifinalist Cut",
+    date: "February 15, 2025",
+    accent: "#f472b6",
+    events: [
+      {
+        time: "08:00 AM",
+        title: "Hot Breakfast",
+        desc: "Nutritious breakfast served to fuel the final critical development and UI integration block.",
+        tag: "FOOD",
+        tagColor: "#fbbf24"
+      },
+      {
+        time: "09:30 AM",
+        title: "Phase 3 Deep Tech Review",
+        desc: "Rigorous technical inspection of functioning prototypes, live APIs, and failure-handling logic.",
+        tag: "REVIEW",
+        tagColor: "#f472b6"
+      },
+      {
+        time: "11:00 AM",
+        title: "Top 15 Semifinalists Announced",
+        desc: "Jury tallies Phase 1-3 scores and announces the top 15 teams advancing to the semifinal bracket.",
+        tag: "CUT",
+        tagColor: "#22c55e"
+      }
+    ]
+  },
+  {
+    stageNum: "05",
+    code: "FINAL_ROUND",
+    name: "Top 10 Finalist Selection & Pitch Prep",
+    date: "February 15, 2025",
+    accent: "#f97316",
+    events: [
+      {
+        time: "01:00 PM",
+        title: "Networking Lunch",
+        desc: "Afternoon lunch served for all participants, judges, and corporate sponsors.",
+        tag: "FOOD",
+        tagColor: "#fbbf24"
+      },
+      {
+        time: "01:30 PM",
+        title: "Final Code Freeze & Deck Polish",
+        desc: "Final repository commits pushed; teams refine their 10-minute slides with mentor feedback.",
+        tag: "REVIEW",
+        tagColor: "#f97316"
+      },
+      {
+        time: "03:00 PM",
+        title: "Top 10 Finalists Revealed",
+        desc: "The elite 10 squads selected to take the main stage for the public final judging presentations.",
+        tag: "CUT",
+        tagColor: "#22c55e"
+      }
+    ]
+  },
+  {
+    stageNum: "06",
+    code: "VICTORY_LAP",
+    name: "Grand Finale, Demos & ₹70,000 Awards",
+    date: "February 15, 2025",
+    accent: "#fbbf24",
+    events: [
+      {
+        time: "06:00 PM",
+        title: "Top 10 Main Stage Demos",
+        desc: "Each finalist squad delivers a high-stakes 10-minute live demonstration and Q&A before the industry jury.",
+        tag: "PITCH",
+        tagColor: "#00d4ff"
+      },
+      {
+        time: "06:30 PM",
+        title: "Awards Ceremony & Closing",
+        desc: "Champions crowned, ₹70,000 cash prize pool distributed, and closing felicitations by IEEE CS PESU.",
+        tag: "WINNERS",
+        tagColor: "#fbbf24"
+      }
+    ]
+  }
+];
+---
+
+<section class="section-pad timeline-section" id="timeline">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="arcade-chip">
+        <span class="chip-dot"></span>
+        <span>CHRONO_LOG // 24-HOUR STAGE ROADMAP</span>
+      </div>
+      <h2 class="section-title neon-title">The 24-Hour Sprint Roadmap</h2>
+      <p class="section-desc">
+        From opening check-in at 4:00 PM Friday to the high-voltage closing awards ceremony on Saturday evening — every milestone mapped.
+      </p>
+    </div>
+
+    <!-- Timeline Wrapper -->
+    <div class="timeline-container">
+      <div class="energy-trail" aria-hidden="true"></div>
+
+      <div class="stages-stack">
+        {stages.map((stage) => (
+          <div class="stage-block" style={`--stage-accent: ${stage.accent};`}>
+            <!-- Stage Header Marker -->
+            <div class="stage-marker">
+              <div class="marker-dot">
+                <span class="pulse-ring"></span>
+              </div>
+              <div class="stage-pill">
+                <span class="stage-code">{stage.code}</span>
+                <span class="stage-date">{stage.date}</span>
+              </div>
+            </div>
+
+            <!-- Stage Card -->
+            <div class="stage-arcade-card">
+              <div class="card-titlebar">
+                <div class="titlebar-heading">
+                  <span class="stage-badge">STAGE {stage.stageNum}</span>
+                  <h3 class="stage-name">{stage.name}</h3>
+                </div>
+              </div>
+
+              <div class="events-list">
+                {stage.events.map((evt) => (
+                  <div class="event-item">
+                    <div class="event-time-col">
+                      <span class="event-time">{evt.time}</span>
+                      <span
+                        class="event-tag"
+                        style={`border-color: ${evt.tagColor}; color: ${evt.tagColor}; background: rgba(0, 0, 0, 0.3);`}
+                      >
+                        {evt.tag}
+                      </span>
+                    </div>
+
+                    <div class="event-content">
+                      <h4 class="event-title">{evt.title}</h4>
+                      <p class="event-desc">{evt.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline-section {
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, rgba(10, 20, 50, 0.7) 0%, rgba(2, 8, 24, 0.98) 100%);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .arcade-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--border-neon);
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--arcade-yellow);
+    box-shadow: 0 0 8px var(--arcade-yellow);
+  }
+
+  .neon-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Timeline Container */
+  .timeline-container {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding-left: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-container {
+      padding-left: 3rem;
+    }
+  }
+
+  /* Vertical glowing trail */
+  .energy-trail {
+    position: absolute;
+    top: 15px;
+    bottom: 20px;
+    left: 8px;
+    width: 3px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 212, 255, 0.8) 0%,
+      rgba(168, 85, 247, 0.8) 50%,
+      rgba(251, 191, 36, 0.9) 100%
+    );
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+  }
+
+  @media (min-width: 768px) {
+    .energy-trail {
+      left: 14px;
+    }
+  }
+
+  .stages-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+
+  .stage-block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  /* Marker on the trail */
+  .stage-marker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: -2rem;
+  }
+
+  @media (min-width: 768px) {
+    .stage-marker {
+      margin-left: -3rem;
+    }
+  }
+
+  .marker-dot {
+    position: relative;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: var(--stage-accent);
+    box-shadow: 0 0 14px var(--stage-accent);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pulse-ring {
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    border: 2px solid var(--stage-accent);
+    opacity: 0.6;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  .stage-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(8, 20, 48, 0.9);
+    border: 1px solid var(--stage-accent);
+    padding: 0.2rem 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .stage-code {
+    font-family: var(--font-retro);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--stage-accent);
+  }
+
+  .stage-date {
+    font-family: var(--font-retro);
+    font-size: 0.9rem;
+    color: var(--text-soft);
+  }
+
+  /* Stage Arcade Card */
+  .stage-arcade-card {
+    background: rgba(10, 22, 50, 0.84);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-left: 3px solid var(--stage-accent);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .stage-arcade-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 212, 255, 0.2);
+  }
+
+  .card-titlebar {
+    background: rgba(5, 14, 34, 0.9);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    padding: 0.75rem 1.25rem;
+  }
+
+  .titlebar-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .stage-badge {
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+    color: #030a1c;
+    background: var(--stage-accent);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .stage-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .events-list {
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  }
+
+  .event-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  @media (min-width: 600px) {
+    .event-item {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+  }
+
+  .event-time-col {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+
+  .event-time {
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    color: var(--arcade-yellow);
+    letter-spacing: 0.05em;
+  }
+
+  .event-tag {
+    font-family: var(--font-retro);
+    font-size: 0.85rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid;
+    letter-spacing: 0.05em;
+  }
+
+  .event-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .event-title {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #e0f4ff;
+    line-height: 1.3;
+  }
+
+  .event-desc {
+    font-size: 0.86rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>

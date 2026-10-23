@@ -1,0 +1,490 @@
+﻿---
+// Header.astro — Vintage Arcade Navigation Bar
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Themes", href: "#themes" },
+  { label: "Timeline", href: "#timeline" },
+  { label: "Top 40", href: "#teams" },
+  { label: "Sponsors", href: "#sponsors" },
+  { label: "FAQs", href: "#faqs" },
+  { label: "Contact", href: "#contact" }
+];
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-container container">
+    <!-- Brand / Identity: IEEE Logo + CONFLUENCE Title -->
+    <a href="#home" class="header-brand" aria-label="Confluence 2025 Home">
+      <img
+        src="/logos/ieee-cs-logo.png"
+        alt="IEEE Computer Society"
+        class="header-ieee-logo"
+        loading="eager"
+      />
+      <div class="brand-divider" aria-hidden="true"></div>
+      <div class="brand-titles">
+        <span class="brand-main">CONFLUENCE</span>
+        <span class="brand-year">2025</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links (Clean & Uncluttered) -->
+    <nav class="desktop-nav" aria-label="Main Navigation">
+      <ul class="nav-links">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} class="nav-anchor">
+              <span class="nav-text">{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Header Right Actions -->
+    <div class="header-actions">
+      <a
+        href="https://docs.google.com/presentation/d/1fI5FFfKuqRj5BTz8OGMAptzq1CdKxlpp/edit#slide=id.p1"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="arcade-action-btn"
+        title="Official Presentation Slides Template"
+      >
+        <span>Deck Template</span>
+        <span class="btn-arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <div class="status-badge" title="Hackathon Concluded: Feb 14-15, 2025">
+        <span class="status-indicator" aria-hidden="true"></span>
+        <span class="status-label">FEB 14–15</span>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        class="mobile-toggle-btn"
+        id="mobile-nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+      >
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobile-nav-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-title">SYSTEM_MENU // SELECT STAGE</span>
+      <button class="drawer-close-btn" id="drawer-close" aria-label="Close menu">✕</button>
+    </div>
+    <ul class="mobile-links">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="mobile-link">
+            <span class="mob-bullet">▸</span>
+            <span>{item.label}</span>
+          </a>
+        </li>
+      ))}
+      <li class="mobile-cta-li">
+        <a
+          href="https://docs.google.com/presentation/d/1fI5FFfKuqRj5BTz8OGMAptzq1CdKxlpp/edit#slide=id.p1"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mobile-action-btn"
+        >
+          <span>Open Slide Deck Template ↗</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById("mobile-nav-toggle");
+  const closeBtn = document.getElementById("drawer-close");
+  const drawer = document.getElementById("mobile-nav-drawer");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+
+  function openMenu() {
+    if (!drawer || !toggleBtn) return;
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    toggleBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    if (!drawer || !toggleBtn) return;
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  toggleBtn?.addEventListener("click", () => {
+    const isOpen = drawer?.classList.contains("is-open");
+    if (isOpen) closeMenu();
+    else openMenu();
+  });
+
+  closeBtn?.addEventListener("click", closeMenu);
+  mobileLinks.forEach((link) => link.addEventListener("click", closeMenu));
+
+  // Active section spy on scroll
+  const sections = document.querySelectorAll("section[id]");
+  const navAnchors = document.querySelectorAll<HTMLAnchorElement>(".nav-anchor");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    const scrollPos = window.scrollY + 120;
+
+    sections.forEach((sec) => {
+      const top = (sec as HTMLElement).offsetTop;
+      const height = (sec as HTMLElement).offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        current = sec.getAttribute("id") || "";
+      }
+    });
+
+    navAnchors.forEach((a) => {
+      const href = a.getAttribute("href")?.replace("#", "");
+      if (href === current) {
+        a.classList.add("active");
+      } else {
+        a.classList.remove("active");
+      }
+    });
+  }, { passive: true });
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(3, 8, 22, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease;
+  }
+
+  .header-container {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  /* Brand Styling */
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .header-ieee-logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    transition: transform 0.2s ease;
+  }
+
+  .header-brand:hover .header-ieee-logo {
+    transform: scale(1.04);
+  }
+
+  .brand-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(0, 212, 255, 0.3);
+  }
+
+  .brand-titles {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .brand-main {
+    font-family: var(--font-retro);
+    font-size: 1.55rem;
+    letter-spacing: 0.08em;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .brand-year {
+    font-family: var(--font-retro);
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    color: var(--arcade-yellow);
+    line-height: 1;
+  }
+
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: none;
+  }
+
+  @media (min-width: 960px) {
+    .desktop-nav {
+      display: block;
+      flex: 1;
+      max-width: 620px;
+    }
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-anchor {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #cadbee;
+    text-decoration: none;
+    padding: 0.45rem 0.65rem;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+    position: relative;
+    transition: color 0.18s ease;
+  }
+
+  .nav-anchor:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+  }
+
+  .nav-anchor.active {
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: inset 0 -2px 0 var(--neon-cyan);
+  }
+
+  /* Right Header Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .arcade-action-btn {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-retro);
+    font-size: 0.98rem;
+    letter-spacing: 0.05em;
+    color: #030a1c;
+    background: var(--arcade-yellow);
+    border: 1px solid var(--arcade-yellow);
+    padding: 0.38rem 0.85rem;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);
+    transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  }
+
+  @media (min-width: 680px) {
+    .arcade-action-btn {
+      display: inline-flex;
+    }
+  }
+
+  .arcade-action-btn:hover {
+    background: #fcd34d;
+    transform: translateY(-1px);
+    box-shadow: 0 0 16px rgba(251, 191, 36, 0.6);
+  }
+
+  .btn-arrow {
+    font-size: 0.85rem;
+  }
+
+  .status-badge {
+    display: none;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 0.3rem 0.65rem;
+    border-radius: 4px;
+  }
+
+  @media (min-width: 480px) {
+    .status-badge {
+      display: flex;
+    }
+  }
+
+  .status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pixel-green);
+    box-shadow: 0 0 6px var(--pixel-green);
+  }
+
+  .status-label {
+    font-family: var(--font-retro);
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
+    letter-spacing: 0.08em;
+  }
+
+  /* Mobile Toggle */
+  .mobile-toggle-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 34px;
+    height: 32px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 4px;
+    padding: 6px 7px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  @media (min-width: 960px) {
+    .mobile-toggle-btn {
+      display: none;
+    }
+  }
+
+  .mobile-toggle-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: var(--neon-cyan);
+  }
+
+  .burger-bar {
+    width: 100%;
+    height: 2px;
+    background: var(--neon-cyan);
+    border-radius: 1px;
+    transition: all 0.2s;
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(3, 8, 22, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 1.5rem;
+    overflow-y: auto;
+    border-top: 1px solid rgba(0, 212, 255, 0.25);
+  }
+
+  .mobile-drawer.is-open {
+    display: block;
+  }
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed rgba(0, 212, 255, 0.2);
+    margin-bottom: 1.25rem;
+  }
+
+  .drawer-title {
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--arcade-yellow);
+  }
+
+  .drawer-close-btn {
+    background: none;
+    border: none;
+    color: var(--neon-cyan);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .mobile-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e0f4ff;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    background: rgba(10, 22, 50, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 6px;
+    transition: background 0.18s, border-color 0.18s;
+  }
+
+  .mobile-link:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+  }
+
+  .mob-bullet {
+    color: var(--arcade-yellow);
+    font-size: 1rem;
+  }
+
+  .mobile-cta-li {
+    margin-top: 1rem;
+  }
+
+  .mobile-action-btn {
+    display: block;
+    text-align: center;
+    font-family: var(--font-retro);
+    font-size: 1.15rem;
+    color: #030a1c;
+    background: var(--arcade-yellow);
+    padding: 0.85rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 0 14px rgba(251, 191, 36, 0.4);
+  }
+</style>

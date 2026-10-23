@@ -1,0 +1,47 @@
+﻿---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "CONFLUENCE 2025 | National Hackathon by IEEE CS PESU",
+  description = "Confluence 2025 - A 24-hour national hackathon by IEEE Computer Society PES University. 40 teams, ₹70,000 prize pool, 8 AI tracks. February 14-15, 2025, PESU RR Campus.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="IEEE Computer Society PES University" />
+    <meta name="theme-color" content="#5bc8f5" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Google Fonts: VT323 retro, Josefin Sans headings, Nunito body, Press Start 2P pixel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@400;600;700;800;900&family=Josefin+Sans:ital,wght@0,400;0,600;0,700;1,700&family=Press+Start+2P&display=optional"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Film grain overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+    <slot />
+  </body>
+</html>

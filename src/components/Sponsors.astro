@@ -1,0 +1,563 @@
+﻿---
+// Sponsors.astro — Sponsors & Ecosystem Partners (Authentic Logos + Dark Arcade Theme)
+interface Partner {
+  name: string;
+  role: string;
+  logo: string;
+  alt: string;
+  tier: "title" | "association" | "supporter";
+  url?: string;
+}
+
+const partners: Partner[] = [
+  // Primary Sponsor
+  {
+    name: "Accure",
+    role: "Title / Primary Sponsor",
+    logo: "/logos/accure.png",
+    alt: "Accure Logo",
+    tier: "title",
+    url: "https://accure.ai/"
+  },
+  // In Association With
+  {
+    name: "IEEE Bangalore Section",
+    role: "Professional Section Partner",
+    logo: "/logos/ieeeb.png",
+    alt: "IEEE Bangalore Section Logo",
+    tier: "association",
+    url: "https://ieeebangalore.org/"
+  },
+  {
+    name: "IEEE CS PESU",
+    role: "Host Student Chapter",
+    logo: "/logos/ieeelogo.png",
+    alt: "IEEE Computer Society PESU Logo",
+    tier: "association",
+    url: "https://www.instagram.com/ieeecs.pesu/"
+  },
+  {
+    name: "C3I (PESU ECC)",
+    role: "Center for Cyber Security & Innovation",
+    logo: "/logos/c3i.png",
+    alt: "C3I Logo",
+    tier: "association"
+  },
+  {
+    name: "CIE (PESU)",
+    role: "Centre for Innovation & Entrepreneurship",
+    logo: "/logos/cie.png",
+    alt: "CIE PES University Logo",
+    tier: "association"
+  },
+  // Supported By
+  {
+    name: "Citrix",
+    role: "Enterprise Technology Supporter",
+    logo: "/logos/citrix.png",
+    alt: "Citrix Logo",
+    tier: "supporter",
+    url: "https://www.citrix.com/"
+  },
+  {
+    name: "G-KnowMe",
+    role: "Innovation Supporter",
+    logo: "/logos/gknowme.png",
+    alt: "G-KnowMe Logo",
+    tier: "supporter"
+  }
+];
+
+const titlePartners = partners.filter(p => p.tier === "title");
+const associationPartners = partners.filter(p => p.tier === "association");
+const supporterPartners = partners.filter(p => p.tier === "supporter");
+---
+
+<section class="section-pad sponsors-section" id="sponsors">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="arcade-chip">
+        <span class="chip-dot"></span>
+        <span>PARTNERS.SYS // POWERED BY INDUSTRY & ACADEMIA</span>
+      </div>
+      <h2 class="section-title neon-title">Sponsors & Ecosystem Partners</h2>
+      <p class="section-desc">
+        Confluence 2025 was powered by visionary technology leaders, IEEE Bangalore Section, and premier research centers dedicated to collegiate engineering excellence.
+      </p>
+    </div>
+
+    <div class="sponsors-wrapper">
+      <!-- Title Sponsor Tier -->
+      <div class="tier-arcade-panel tier-primary">
+        <div class="tier-titlebar">
+          <span class="tier-pill tier-pill--gold">★ PRIMARY TITLE SPONSOR</span>
+          <span class="tier-tagline">POWERING INNOVATION</span>
+        </div>
+        <div class="partners-grid-title">
+          {titlePartners.map(p => (
+            <div class="partner-card primary-card">
+              <div class="logo-box logo-box--large">
+                <img src={p.logo} alt={p.alt} class="partner-logo" loading="lazy" />
+              </div>
+              <div class="partner-meta">
+                <h3 class="partner-name">{p.name}</h3>
+                <span class="partner-role">{p.role}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- In Association With Tier -->
+      <div class="tier-arcade-panel">
+        <div class="tier-titlebar">
+          <span class="tier-pill tier-pill--cyan">IN ASSOCIATION WITH & HOST CHAPTER</span>
+          <span class="tier-tagline">ACADEMIC & PROFESSIONAL BODIES</span>
+        </div>
+        <div class="partners-grid">
+          {associationPartners.map(p => (
+            <div class="partner-card">
+              <div class="logo-box">
+                <img src={p.logo} alt={p.alt} class="partner-logo" loading="lazy" />
+              </div>
+              <div class="partner-meta">
+                <h3 class="partner-name">{p.name}</h3>
+                <span class="partner-role">{p.role}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Supported By Tier -->
+      <div class="tier-arcade-panel">
+        <div class="tier-titlebar">
+          <span class="tier-pill tier-pill--green">SUPPORTED BY</span>
+          <span class="tier-tagline">ENTERPRISE & INNOVATION SUPPORTERS</span>
+        </div>
+        <div class="partners-grid">
+          {supporterPartners.map(p => (
+            <div class="partner-card">
+              <div class="logo-box">
+                <img src={p.logo} alt={p.alt} class="partner-logo" loading="lazy" />
+              </div>
+              <div class="partner-meta">
+                <h3 class="partner-name">{p.name}</h3>
+                <span class="partner-role">{p.role}</span>
+              </div>
+            </div>
+          ))}
+
+          <!-- Academic Department Card -->
+          <div class="partner-card">
+            <div class="logo-box logo-box--text">
+              <span class="dept-badge">EEE PESU</span>
+            </div>
+            <div class="partner-meta">
+              <h3 class="partner-name">EEE Department</h3>
+              <span class="partner-role">PES University RR Campus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Pitch Deck Template Banner -->
+    <div class="presentation-feature-card">
+      <div class="feature-titlebar">
+        <div class="titlebar-left">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="deck-file-name">CONFLUENCE_FINALIST_DECK_TEMPLATE.PPTX</span>
+        </div>
+        <span class="deck-verified-tag">VERIFIED TEMPLATE</span>
+      </div>
+
+      <div class="feature-body">
+        <div class="feature-icon-wrapper" aria-hidden="true">
+          <span class="slides-icon">📊</span>
+        </div>
+        <div class="feature-content">
+          <h3 class="feature-title">Official Finalist Presentation Template</h3>
+          <p class="feature-desc">
+            The authentic slide deck structure required for the 10-minute final stage presentation before the judges. Includes standardized slides for problem statement, technical architecture, live prototype demo, and viability metrics.
+          </p>
+        </div>
+        <div class="feature-cta">
+          <a
+            href="https://docs.google.com/presentation/d/1fI5FFfKuqRj5BTz8OGMAptzq1CdKxlpp/edit#slide=id.p1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="arcade-deck-btn"
+          >
+            <span>Open Google Slides Deck</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sponsors-section {
+    position: relative;
+    background: radial-gradient(circle at 50% 30%, rgba(10, 25, 60, 0.7) 0%, rgba(2, 7, 20, 0.98) 100%);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .arcade-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--border-neon);
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--arcade-yellow);
+    box-shadow: 0 0 8px var(--arcade-yellow);
+  }
+
+  .neon-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    line-height: 1.15;
+  }
+
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Sponsors Panels */
+  .sponsors-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    max-width: 980px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .tier-arcade-panel {
+    background: rgba(10, 22, 50, 0.84);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  .tier-primary {
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(251, 191, 36, 0.15);
+  }
+
+  .tier-titlebar {
+    background: rgba(5, 14, 34, 0.9);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    padding: 0.65rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .tier-pill {
+    font-family: var(--font-retro);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .tier-pill--gold {
+    background: #fbbf24;
+    color: #030818;
+  }
+
+  .tier-pill--cyan {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--neon-cyan);
+    border: 1px solid var(--neon-cyan);
+  }
+
+  .tier-pill--green {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--pixel-green);
+    border: 1px solid var(--pixel-green);
+  }
+
+  .tier-tagline {
+    font-family: var(--font-retro);
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* Grid inside panels */
+  .partners-grid-title {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .partners-grid {
+    padding: 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    .partners-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .partners-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Partner Cards */
+  .partner-card {
+    background: rgba(14, 30, 68, 0.7);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .partner-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 4px 18px rgba(0, 212, 255, 0.25);
+  }
+
+  .primary-card {
+    max-width: 480px;
+    width: 100%;
+    padding: 1.25rem 1.8rem;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(14, 30, 68, 0.8) 100%);
+    border: 1.5px solid rgba(251, 191, 36, 0.5);
+  }
+
+  .primary-card:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 6px 24px rgba(251, 191, 36, 0.3);
+  }
+
+  /* Logo container - Clean light box to make logos pop crisply */
+  .logo-box {
+    width: 72px;
+    height: 52px;
+    background: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .logo-box--large {
+    width: 120px;
+    height: 64px;
+    padding: 8px 12px;
+  }
+
+  .logo-box--text {
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid var(--neon-cyan);
+  }
+
+  .dept-badge {
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    letter-spacing: 0.05em;
+  }
+
+  .partner-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .partner-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    overflow: hidden;
+  }
+
+  .partner-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+  }
+
+  .partner-role {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.4;
+  }
+
+  /* Presentation Feature Card */
+  .presentation-feature-card {
+    max-width: 980px;
+    margin: 0 auto;
+    background: rgba(10, 22, 50, 0.88);
+    border: 1.5px solid rgba(0, 212, 255, 0.4);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 212, 255, 0.15);
+  }
+
+  .feature-titlebar {
+    background: rgba(5, 14, 34, 0.95);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    padding: 0.65rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .titlebar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background: #ef4444; }
+  .dot.yellow { background: #fbbf24; }
+  .dot.green { background: #22c55e; }
+
+  .deck-file-name {
+    font-family: var(--font-retro);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: #e0f4ff;
+    margin-left: 0.35rem;
+  }
+
+  .deck-verified-tag {
+    font-family: var(--font-retro);
+    font-size: 0.9rem;
+    color: var(--pixel-green);
+    letter-spacing: 0.08em;
+  }
+
+  .feature-body {
+    padding: 1.5rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .feature-body {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .feature-icon-wrapper {
+    font-size: 2.4rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 10px 14px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .feature-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .feature-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .feature-cta {
+    flex-shrink: 0;
+  }
+
+  .arcade-deck-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-retro);
+    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+    background: var(--neon-cyan);
+    color: #020818;
+    padding: 0.75rem 1.35rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.5);
+    transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  }
+
+  .arcade-deck-btn:hover {
+    background: #38bdf8;
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.8);
+  }
+</style>
