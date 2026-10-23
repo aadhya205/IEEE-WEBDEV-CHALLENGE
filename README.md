@@ -1,6 +1,5 @@
 # aadhya-confluence-2026 — Confluence 2025 Portal
 
-A vintage-arcade redesign of the official **Confluence 2025** 24-hour national hackathon portal by **IEEE Computer Society PES University**.
 
 Created as a submission for the IEEE CS PESU Web Development Recruitments Challenge, this project pairs its retro arcade aesthetic with Windows XP-inspired elements and was developed with Antigravity assistance.
 
